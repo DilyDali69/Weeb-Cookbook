@@ -1,11 +1,9 @@
-# app.py
-from flask import Flask, jsonify
+from flask import Flask, jsonify, send_from_directory, render_template
 from flask_cors import CORS
 import pandas as pd
+import os
 
-
-
-app = Flask(__name__)
+app = Flask(__name__, static_folder='assets', template_folder='.')
 
 CORS(app)
 
@@ -33,5 +31,16 @@ def get_cleaned_recipes():
     # Convert the DataFrame to JSON format
     return jsonify(df.to_dict(orient='records'))
 
+# Serve static files (JavaScript, CSS, etc.)
+@app.route('/assets')
+def serve_static_files(path):
+    return send_from_directory('assets', path)
+
+# Serve the HTML file
+@app.route('/')
+def serve_index():
+    return send_from_directory('.', 'index.html')
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
+

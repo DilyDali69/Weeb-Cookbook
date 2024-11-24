@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,7 +24,7 @@
         <button class="category" data-category="all">All Recipes</button>
         <button class="category" data-category="japanese">Japanese</button>
         <button class="category" data-category="korean">Korean</button>
-        <button class="category" data-category="dessert">Dessert</button>
+        <button class="category" data-category="non-weeb">Non-Weeb</button>
     </nav>
 
     <main class="recipe-list" id="recipe-list">
@@ -36,15 +37,16 @@
 
     <!-- Load and parse CSV file -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
-    
+
     <script>
         Papa.parse('assets/recipes.csv', {
             download: true,
             header: true,
-            complete: function(results) {
+            complete: function (results) {
                 console.log(results.data); // Logs parsed CSV data as JSON
             }
         });
     </script>
 </body>
+
 </html>
